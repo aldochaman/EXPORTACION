@@ -141,6 +141,7 @@ namespace Exportacion
             // 
             // dtp_FechaInicio
             // 
+            this.dtp_FechaInicio.CustomFormat = "\"mm/dd/yyyy\"";
             this.dtp_FechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_FechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_FechaInicio.Location = new System.Drawing.Point(283, 96);
