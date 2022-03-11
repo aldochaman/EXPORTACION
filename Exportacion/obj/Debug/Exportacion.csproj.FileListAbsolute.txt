@@ -1,3 +1,5 @@
+C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.csproj.AssemblyReference.cache
+C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.Form_Exportacion.resources
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.Properties.Resources.resources
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.csproj.GenerateResource.cache
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.csproj.CoreCompileInputs.cache
@@ -5,6 +7,7 @@ C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Exportacion.exe.co
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Exportacion.exe
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Exportacion.pdb
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\FileHelpers.dll
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Google.Protobuf.dll
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\K4os.Compression.LZ4.dll
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\K4os.Compression.LZ4.Streams.dll
@@ -27,6 +30,7 @@ C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\System.Threading.T
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\System.ValueTuple.dll
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Ubiety.Dns.Core.dll
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\ZstdNet.dll
+C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\FileHelpers.xml
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Google.Protobuf.pdb
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Google.Protobuf.xml
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\K4os.Compression.LZ4.xml
@@ -50,5 +54,3 @@ C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\System.ValueTuple.
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.csproj.CopyComplete
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.exe
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.pdb
-C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.Form_Exportacion.resources
-C:\Users\aldo0\source\repos\EXPORTACION\Exportacion\obj\Debug\Exportacion.csproj.AssemblyReference.cache

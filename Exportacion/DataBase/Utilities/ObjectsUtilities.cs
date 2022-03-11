@@ -1,4 +1,5 @@
 ﻿using Framework.DataBase;
+using Framework.Enumerations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -492,6 +493,33 @@ namespace Framework.Extensions
             {
                 return null;
             }
+        }
+        public static string DateSql(this DateTime date, bool isHHmmss, DatabaseEngines engines)
+        {
+            string caracter;
+            StringBuilder str;
+            switch (engines)
+            {
+                case DatabaseEngines.SqlServer:
+                    caracter = "";
+                    break;
+
+                default:
+                    caracter = "";
+                    break;
+            }
+
+            str = new StringBuilder();
+            str.AppendFormat("'{0}{3}{1}{3}{2}", (date.Year).ToString().PadLeft(4, '0'), (date.Month).ToString().PadLeft(2, '0'), date.Day.ToString().PadLeft(2, '0'), caracter);
+            if (isHHmmss)
+            {
+                str.AppendFormat(" {0}:{1}:{2}'", date.Hour.ToString().PadLeft(2, '0'), date.Minute.ToString().PadLeft(2, '0'), date.Second.ToString().PadLeft(2, '0'));
+            }
+            else
+            {
+                str.AppendFormat("'");
+            }
+            return str.ToString();
         }
     }
 }
