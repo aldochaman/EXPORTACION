@@ -223,7 +223,7 @@ namespace Exportacion
                         LReceptoras.BasePointNr, LReceptoras.IndexSTN, LReceptoras.Easting, LReceptoras.Northing, LReceptoras.Elevation, [Preplot-R].Easting, [Preplot-R].Northing 
                         ORDER BY LinkR.BaseLineNr, LinkR.BasePointNr;*/
 
-                    Export_Rquery.AppendFormat("SELECT 'R' AS Inicial, LinkR.BaseLineNr, LinkR.BasePointNr, LinkR.IndexSTN AS RecLineIndex, IIf(LReceptoras.Tipo is not null, LReceptoras.Tipo, [Preplot-R].Tipo) As Detector,");
+                    /*Export_Rquery.AppendFormat("SELECT 'R' AS Inicial, LinkR.BaseLineNr, LinkR.BasePointNr, LinkR.IndexSTN AS RecLineIndex, IIf(LReceptoras.Tipo is not null, LReceptoras.Tipo, [Preplot-R].Tipo) As Detector,");
                     Export_Rquery.AppendFormat(" IIf([LReceptoras].[Easting] Is Not Null,Format$([LReceptoras].[Easting],'#.00'),Format$([Preplot-R].[Easting],'#.00')) AS Este, IIf([LReceptoras].[Northing] Is Not Null,");
                     Export_Rquery.AppendFormat("Format$([LReceptoras].[Northing],'#.00'),Format$([Preplot-R].[Northing],'#.00')) AS Norte, IIf(Int([Elevation])=0,'  ' & Format$([Elevation],'0.0'),IIf(Int([Elevation])=-1,");
                     Export_Rquery.AppendFormat("' ' & Format$([Elevation],'0.0'),IIf(Len(Int([Elevation]))=2,' ' & Format$([Elevation],'#.00'),IIf(Len(Int([Elevation]))=1,'  ' & Format$([Elevation],'#.00'),");
@@ -233,8 +233,24 @@ namespace Exportacion
                     Export_Rquery.AppendFormat("Group BY 'R', LinkR.BaseLineNr, LinkR.BasePointNr, LinkR.IndexSTN, ");
                     Export_Rquery.AppendFormat("IIf(LReceptoras.Tipo is not null, LReceptoras.Tipo, [Preplot-R].Tipo),");
                     Export_Rquery.AppendFormat(" LReceptoras.BaseLineNr, LReceptoras.BasePointNr, LReceptoras.IndexSTN, LReceptoras.Easting, LReceptoras.Northing, LReceptoras.Elevation, [Preplot-R].Easting, [Preplot-R].Northing ");
+                    Export_Rquery.AppendFormat("ORDER BY LinkR.BaseLineNr, LinkR.BasePointNr;");*/
+                    
+
+                    Export_Rquery.AppendFormat("SELECT 'R' AS Inicial, LinkR.BaseLineNr, LinkR.BasePointNr, LinkR.IndexSTN AS RecLineIndex, IIf(LReceptoras.Tipo is not null, LReceptoras.Tipo, [Preplot-R].Tipo) As Detector,");
+                    Export_Rquery.AppendFormat(" IIf([LReceptoras].[Easting] Is Not Null,Format$([LReceptoras].[Easting],'#.00'),Format$([Preplot-R].[Easting],'#.00')) AS Este, IIf([LReceptoras].[Northing] Is Not Null,");
+                    Export_Rquery.AppendFormat("Format$([LReceptoras].[Northing],'#.00'),Format$([Preplot-R].[Northing],'#.00')) AS Norte, IIf(Int([Elevation])=0,'  ' & Format$([Elevation],'0.0'),IIf(Int([Elevation])=-1,");
+                    Export_Rquery.AppendFormat("' ' & Format$([Elevation],'0.0'),IIf(Len(Int([Elevation]))=2,' ' & Format$([Elevation],'#.00'),IIf(Len(Int([Elevation]))=1,'  ' & Format$([Elevation],'#.00'),Format$([Elevation],'#.00')))))");
+                    Export_Rquery.AppendFormat(" AS Elevacion, 1000001 AS BoxVersion  " );
+                    Export_Rquery.AppendFormat("FROM  (LinkR ");
+                    Export_Rquery.AppendFormat("LEFT JOIN LReceptoras ON (LinkR.IndexSTN = LReceptoras.IndexSTN) AND (LinkR.BaseLineNr = LReceptoras.BaseLineNr) AND (LinkR.BasePointNr = LReceptoras.BasePointNr))");
+                    Export_Rquery.AppendFormat(" INNER JOIN [Preplot-R] ON (LinkR.BaseLineNr = [Preplot-R].BaseLineNr) AND (LinkR.BasePointNr = [Preplot-R].BasePointNr) ");
+                    Export_Rquery.AppendFormat("Group BY 'R', LinkR.BaseLineNr, LinkR.BasePointNr, LinkR.IndexSTN,");
+                    Export_Rquery.AppendFormat(" IIf(LReceptoras.Tipo is not null, LReceptoras.Tipo, [Preplot-R].Tipo), LReceptoras.BaseLineNr, LReceptoras.BasePointNr, LReceptoras.IndexSTN, LReceptoras.Easting, LReceptoras.Northing,");
+                    Export_Rquery.AppendFormat(" LReceptoras.Elevation, [Preplot-R].Easting, [Preplot-R].Northing ");
                     Export_Rquery.AppendFormat("ORDER BY LinkR.BaseLineNr, LinkR.BasePointNr;");
                     DataTable ExportSPS_R = conection.GetDataTable(Export_Rquery);
+
+
 
                }
           }
