@@ -497,28 +497,33 @@ namespace Framework.Extensions
         public static string DateSql(this DateTime date, bool isHHmmss, DatabaseEngines engines)
         {
             string caracter;
+            string divisor;
             StringBuilder str;
             switch (engines)
             {
                 case DatabaseEngines.SqlServer:
                     caracter = "";
+                    divisor = "'";
                     break;
-
+                case DatabaseEngines.OleDb:
+                    caracter = "/";
+                    divisor = "#";
+                    break;
                 default:
                     caracter = "";
+                    divisor = "'";
                     break;
             }
 
             str = new StringBuilder();
-            str.AppendFormat("'{0}{3}{1}{3}{2}", (date.Year).ToString().PadLeft(4, '0'), (date.Month).ToString().PadLeft(2, '0'), date.Day.ToString().PadLeft(2, '0'), caracter);
+            str.AppendFormat("{4}{0}{3}{1}{3}{2}", (date.Year).ToString().PadLeft(4, '0'), (date.Month).ToString().PadLeft(2, '0'), date.Day.ToString().PadLeft(2, '0'), caracter, divisor);
             if (isHHmmss)
             {
-                str.AppendFormat(" {0}:{1}:{2}'", date.Hour.ToString().PadLeft(2, '0'), date.Minute.ToString().PadLeft(2, '0'), date.Second.ToString().PadLeft(2, '0'));
+                str.AppendFormat(" {0}:{1}:{2}", date.Hour.ToString().PadLeft(2, '0'), date.Minute.ToString().PadLeft(2, '0'), date.Second.ToString().PadLeft(2, '0'));
             }
-            else
-            {
-                str.AppendFormat("'");
-            }
+
+            str.AppendFormat("{0}", divisor);
+
             return str.ToString();
         }
     }

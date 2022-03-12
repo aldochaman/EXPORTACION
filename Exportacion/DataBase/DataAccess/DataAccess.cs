@@ -2365,6 +2365,20 @@ namespace Framework.DataBase
                               if (ExecuteScalar<int>(query, parameters) > 0)
                                    return true;
                               return false;
+                         case DatabaseEngines.OleDb:
+                              try
+                              {
+                                   query = new StringBuilder();
+                                   query.AppendFormat("Select count(*) From {0} ", objectName);
+                                   if (ExecuteScalar<int>(query) >= 0)
+                                        return true;
+                              }
+                              catch
+                              {
+                                   return false;
+                              }
+                              
+                              return false;
                          default:
                               return false;
                     }
