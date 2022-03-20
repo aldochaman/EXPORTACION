@@ -33,10 +33,6 @@ namespace Exportacion
 
                string ruta = Path.GetFullPath("..\\..\\3D IXACHI.mdb");
 
-
-
-
-
                DataAccess conection = new DataAccess(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + ruta + "", "", DatabaseEngines.OleDb);
                StringBuilder Export_Squery = new StringBuilder();
                StringBuilder Export_Xquery = new StringBuilder();
@@ -50,14 +46,6 @@ namespace Exportacion
                     {
                          //SQL que crea la datatable  para generar el Archivo S  Todos los tipos
 
-                         /*SQL que crea la datatable  para generar el Archivo S  Todos los tipos
-                         SELECT 'S' AS Inicial, TReporte_Est.BaseLineNr, TReporte_Est.BasePointNr, 1 AS BasePointIndex, TReporte_Est.Tipo As Fuente, TReporte_Est.SourceDepth,
-                         IIf(Len([SourceUpholeTime]) = 1,' ' & [SourceUpholeTime],[SourceUpholeTime]) AS Uphole, Format$([WaterDepth], '0.0') AS WaterDep, Format$([Easting], '#.00') AS Este,
-                         Format$([Northing], '#.00') AS Norte, IIf(Len(Int([Elevation]))= 2,' ' & Format$([Elevation], '0.00'),IIf(Len(Int([Elevation])) = 1,'  ' & Format$([Elevation], '0.00'),
-                         Format$([Elevation], '0.00'))) AS Elevacion, IIf(Len(Format$([SourceEventDate], 'y')) = 1, '  ' & Format$([SourceEventDate], 'y'), IIf(Len(Format$([SourceEventDate], 'y')) = 2,
-                         ' ' & Format$([SourceEventDate], 'y'), Format$([SourceEventDate], 'y'))) AS Dia, Format$([SourceEventTime], 'HHnnss') AS Hora INTO ExportSPS_S
-                         FROM TReporte_Est WHERE(((TReporte_Est.SourceEventDate) >=#07/28/2021# And (TReporte_Est.SourceEventDate)<=#07/28/2021#)) ORDER BY TReporte_Est.RecordNr;*/
-
 
                          Export_Squery.AppendFormat("SELECT 'S' AS Inicial, TReporte_Est.BaseLineNr, TReporte_Est.BasePointNr, 1 AS BasePointIndex, TReporte_Est.Tipo As Fuente, TReporte_Est.SourceDepth, ");
                          Export_Squery.AppendFormat("IIf(Len([SourceUpholeTime])=1,' ' & [SourceUpholeTime],[SourceUpholeTime]) AS Uphole, Format$([WaterDepth], '0.0') AS WaterDep, Format$([Easting],'#.00') AS Este,");
@@ -67,20 +55,9 @@ namespace Exportacion
                          Export_Squery.AppendFormat(" FROM TReporte_Est ");
                          Export_Squery.AppendFormat("WHERE (((TReporte_Est.SourceEventDate)>={0} And (TReporte_Est.SourceEventDate)<={1})) ORDER BY TReporte_Est.RecordNr;", FechaInicio.DateSql(false, DatabaseEngines.OleDb), FechaFinal.DateSql(false, DatabaseEngines.OleDb));
 
-                         //DataTable ExportSPS_SDatatable = conection.GetDataTable(Export_Squery);
-
-
+                        
                          //SQL que crea la datatable  para generar el Archivo X Todos los tipos
-
-                         /*SELECT 'X' AS Inicial, TReporte_Est.FieldTapeNr, TReporte_Est.RecordNr, 11 AS BaseLineIndex, TReporte_Est.BaseLineNr, TReporte_Est.BasePointNr, 1 AS BasePointIndex, 
-                        IIf(Len([Chann1])= 1,'    ' & [Chann1],IIf(Len([Chann1]) = 2,'   ' & [Chann1],IIf(Len([Chann1]) = 3,'  ' & [Chann1], IIf(Len([Chann1]) = 4,' ' & [Chann1],[Chann1])))) AS FstCanal,
-                        IIf(Len([ChannU])= 1,'    ' & [ChannU],IIf(Len([ChannU]) = 2,'   ' & [ChannU],IIf(Len([ChannU]) = 3,'  ' & [ChannU],IIf(Len([ChannU]) = 4,' ' & [ChannU], [ChannU])))) AS LastCanal,
-                        1 AS LineIndex, [Spread - VT].RecLine As RecepLine, [Spread-VT].[1aSTN] As PSTN, [Spread - VT].LsSTN As USTN, [Spread-VT].IndexSTN AS VersionIdx INTO ExportSPS_X 
-                        FROM TReporte_Est INNER JOIN[Spread - VT] ON(TReporte_Est.ActPointNr = [Spread - VT].ActPointNr) AND(TReporte_Est.ActLineNr = [Spread - VT].ActLineNr) 
-                        WHERE(((TReporte_Est.SourceEventDate) >= #07/28/2021# And (TReporte_Est.SourceEventDate) <= #07/28/2021#)) ORDER BY TReporte_Est.FieldTapeNr, TReporte_Est.RecordNr,
-                        TReporte_Est.BaseLineNr, TReporte_Est.BasePointNr, [Spread - VT].Chann1;*/
-
-
+                          
                          Export_Xquery.AppendFormat("SELECT 'X' AS Inicial, TReporte_Est.FieldTapeNr, TReporte_Est.RecordNr, 11 AS BaseLineIndex, TReporte_Est.BaseLineNr, TReporte_Est.BasePointNr, 1 AS BasePointIndex,");
                          Export_Xquery.AppendFormat(" IIf(Len([Chann1])=1,'    ' & [Chann1],IIf(Len([Chann1])=2,'   ' & [Chann1],IIf(Len([Chann1])=3,'  ' & [Chann1], IIf(Len([Chann1])=4,' ' & [Chann1],[Chann1])))) AS FstCanal,");
                          Export_Xquery.AppendFormat(" IIf(Len([ChannU])=1,'    ' & [ChannU],IIf(Len([ChannU])=2,'   ' & [ChannU],IIf(Len([ChannU])=3,'  ' & [ChannU],IIf(Len([ChannU])=4,' ' & [ChannU], [ChannU])))) AS LastCanal,");
@@ -96,17 +73,6 @@ namespace Exportacion
                          // SQL que crea la datatable  para generar el Archivo S E1 y V1
 
 
-                         /*SELECT 'S' AS Inicial, TReporte_Est.BaseLineNr, TReporte_Est.BasePointNr, 1 AS BasePointIndex, TReporte_Est.Tipo As Fuente, TReporte_Est.SourceDepth,
-                         IIf(Len([SourceUpholeTime]) = 1,' ' & [SourceUpholeTime],[SourceUpholeTime]) AS Uphole, Format$([WaterDepth], '0.0') AS WaterDep, Format$([Easting], '#.00') AS Este, 
-                         Format$([Northing], '#.00') AS Norte, IIf(Len(Int([Elevation]))= 2,' ' & Format$([Elevation], '0.00'),IIf(Len(Int([Elevation])) = 1,'  ' & Format$([Elevation], '0.00'),
-                         Format$([Elevation], '0.00'))) AS Elevacion, IIf(Len(Format$([SourceEventDate], 'y')) = 1, '  ' & Format$([SourceEventDate], 'y'), IIf(Len(Format$([SourceEventDate], 'y')) = 2,
-                         ' ' & Format$([SourceEventDate], 'y'), Format$([SourceEventDate], 'y'))) AS Dia, Format$([SourceEventTime], 'HHnnss') AS Hora INTO ExportSPS_S 
-                         FROM TReporte_Est 
-                         WHERE(((TReporte_Est.SourceEventDate) >=#07/28/2021# And (TReporte_Est.SourceEventDate)<=#07/28/2021#) And TReporte_Est.Tipo='V1') 
-                         ORDER BY TReporte_Est.RecordNr;*/
-
-
-
                          Export_Squery.AppendFormat("SELECT 'S' AS Inicial, TReporte_Est.BaseLineNr, TReporte_Est.BasePointNr, 1 AS BasePointIndex, TReporte_Est.Tipo As Fuente, TReporte_Est.SourceDepth,");
                          Export_Squery.AppendFormat(" IIf(Len([SourceUpholeTime])=1,' ' & [SourceUpholeTime],[SourceUpholeTime]) AS Uphole, Format$([WaterDepth], '0.0') AS WaterDep, Format$([Easting],'#.00') AS Este,");
                          Export_Squery.AppendFormat(" Format$([Northing],'#.00') AS Norte, IIf(Len(Int([Elevation]))=2,' ' & Format$([Elevation],'0.00'),IIf(Len(Int([Elevation]))=1,'  ' & Format$([Elevation],'0.00'),");
@@ -120,16 +86,6 @@ namespace Exportacion
 
                          //SQL que crea la datatable  para generar el Archivo X e1 y v1
 
-                         /*SELECT 'X' AS Inicial, TReporte_Est.FieldTapeNr, TReporte_Est.RecordNr, 11 AS BaseLineIndex, TReporte_Est.BaseLineNr, TReporte_Est.BasePointNr, 1 AS BasePointIndex, 
-                         IIf(Len([Chann1])= 1,'    ' & [Chann1],IIf(Len([Chann1]) = 2,'   ' & [Chann1],IIf(Len([Chann1]) = 3,'  ' & [Chann1], IIf(Len([Chann1]) = 4,' ' & [Chann1],[Chann1])))) AS FstCanal,
-                         IIf(Len([ChannU])= 1,'    ' & [ChannU],IIf(Len([ChannU]) = 2,'   ' & [ChannU],IIf(Len([ChannU]) = 3,'  ' & [ChannU],IIf(Len([ChannU]) = 4,' ' & [ChannU], [ChannU])))) AS LastCanal,
-                         1 AS LineIndex, [Spread - VT].RecLine As RecepLine, [Spread-VT].[1aSTN] As PSTN, [Spread - VT].LsSTN As USTN, [Spread-VT].IndexSTN AS VersionIdx INTO ExportSPS_X
-                         FROM TReporte_Est INNER JOIN[Spread - VT] ON(TReporte_Est.ActPointNr = [Spread - VT].ActPointNr) AND(TReporte_Est.ActLineNr = [Spread - VT].ActLineNr) 
-                         WHERE(((TReporte_Est.SourceEventDate) >= #07/28/2021# And (TReporte_Est.SourceEventDate) <= #07/28/2021#) And TReporte_Est.Tipo='V1') 
-                             ORDER BY TReporte_Est.FieldTapeNr, TReporte_Est.RecordNr, TReporte_Est.BaseLineNr, TReporte_Est.BasePointNr, [Spread - VT].Chann1;*/
-
-
-
                          Export_Xquery.AppendFormat("SELECT 'X' AS Inicial, TReporte_Est.FieldTapeNr, TReporte_Est.RecordNr, 11 AS BaseLineIndex, TReporte_Est.BaseLineNr, TReporte_Est.BasePointNr, 1 AS BasePointIndex,");
                          Export_Xquery.AppendFormat(" IIf(Len([Chann1])=1,'    ' & [Chann1],IIf(Len([Chann1])=2,'   ' & [Chann1],IIf(Len([Chann1])=3,'  ' & [Chann1], IIf(Len([Chann1])=4,' ' & [Chann1],[Chann1])))) AS FstCanal,");
                          Export_Xquery.AppendFormat(" IIf(Len([ChannU])=1,'    ' & [ChannU],IIf(Len([ChannU])=2,'   ' & [ChannU],IIf(Len([ChannU])=3,'  ' & [ChannU],IIf(Len([ChannU])=4,' ' & [ChannU], [ChannU])))) AS LastCanal,");
@@ -142,12 +98,11 @@ namespace Exportacion
 
 
                     }
+
                     DataTable ExportSPS_SDatatable = conection.GetDataTable(Export_Squery);
                     DataTable ExportSPS_XDatatable = conection.GetDataTable(Export_Xquery);
+
                     //SQL que crea el datatable STNsSPSX
-
-                    //SELECT RecepLine, PSTN, USTN, VersionIdx INTO[STNsSPSX] FROM ExportSPS_X GROUP BY RecepLine, PSTN, USTN, VersionIdx
-
 
                     STNsSPSX_query.Append("SELECT RecepLine, PSTN, USTN, VersionIdx ");
                     STNsSPSX_query.AppendFormat(" FROM ({0}) ", Export_Xquery);
@@ -156,14 +111,11 @@ namespace Exportacion
 
                     //SQL que crea el datatable LinkR
 
-                    //SELECT LReceptoras.BaseLineNr, LReceptoras.BasePointNr, LReceptoras.IndexSTN INTO LinkR FROM LReceptoras WHERE(((LReceptoras.BaseLineNr) Is Null));
-                    //Verificar si existe la tabla
                     if (conection.ExistsObjectInDataBase("LinkR"))
                     {
                          LinkR_query = new StringBuilder();
                          LinkR_query.Append(" drop table LinkR ");
                          conection.ExecuteCommand(LinkR_query);
-
                     }
                     LinkR_query = new StringBuilder();
                     LinkR_query.Append("SELECT LReceptoras.BaseLineNr, LReceptoras.BasePointNr, LReceptoras.IndexSTN INTO LinkR ");
@@ -212,30 +164,6 @@ namespace Exportacion
                     
                     //SQL que crea la TABLA ExportSPS_R en base a la Tabla Exportada ExportSPS_X
 
-                    /*SELECT 'R' AS Inicial, LinkR.BaseLineNr, LinkR.BasePointNr, LinkR.IndexSTN AS RecLineIndex, IIf(LReceptoras.Tipo is not null, LReceptoras.Tipo, [Preplot - R].Tipo) As Detector,
-                        IIf([LReceptoras].[Easting] Is Not Null,Format$([LReceptoras].[Easting], '#.00'),Format$([Preplot - R].[Easting], '#.00')) AS Este, IIf([LReceptoras].[Northing] Is Not Null,
-                        Format$([LReceptoras].[Northing], '#.00'),Format$([Preplot - R].[Northing], '#.00')) AS Norte, IIf(Int([Elevation])= 0,'  ' & Format$([Elevation], '0.0'),IIf(Int([Elevation]) = -1,
-                        ' ' & Format$([Elevation], '0.0'),IIf(Len(Int([Elevation])) = 2,' ' & Format$([Elevation], '#.00'),IIf(Len(Int([Elevation])) = 1,'  ' & Format$([Elevation], '#.00'),
-                        Format$([Elevation], '#.00'))))) AS Elevacion, 1000001 AS BoxVersion INTO ExportSPS_R 
-                        FROM(LinkR LEFT JOIN LReceptoras ON(LinkR.IndexSTN = LReceptoras.IndexSTN) AND(LinkR.BaseLineNr = LReceptoras.BaseLineNr) AND(LinkR.BasePointNr = LReceptoras.BasePointNr))
-                        INNER JOIN[Preplot - R] ON(LinkR.BaseLineNr = [Preplot - R].BaseLineNr) AND(LinkR.BasePointNr = [Preplot - R].BasePointNr)
-                        Group BY 'R', LinkR.BaseLineNr, LinkR.BasePointNr, LinkR.IndexSTN, IIf(LReceptoras.Tipo is not null, LReceptoras.Tipo, [Preplot - R].Tipo), LReceptoras.BaseLineNr,
-                        LReceptoras.BasePointNr, LReceptoras.IndexSTN, LReceptoras.Easting, LReceptoras.Northing, LReceptoras.Elevation, [Preplot-R].Easting, [Preplot-R].Northing 
-                        ORDER BY LinkR.BaseLineNr, LinkR.BasePointNr;*/
-
-                    /*Export_Rquery.AppendFormat("SELECT 'R' AS Inicial, LinkR.BaseLineNr, LinkR.BasePointNr, LinkR.IndexSTN AS RecLineIndex, IIf(LReceptoras.Tipo is not null, LReceptoras.Tipo, [Preplot-R].Tipo) As Detector,");
-                    Export_Rquery.AppendFormat(" IIf([LReceptoras].[Easting] Is Not Null,Format$([LReceptoras].[Easting],'#.00'),Format$([Preplot-R].[Easting],'#.00')) AS Este, IIf([LReceptoras].[Northing] Is Not Null,");
-                    Export_Rquery.AppendFormat("Format$([LReceptoras].[Northing],'#.00'),Format$([Preplot-R].[Northing],'#.00')) AS Norte, IIf(Int([Elevation])=0,'  ' & Format$([Elevation],'0.0'),IIf(Int([Elevation])=-1,");
-                    Export_Rquery.AppendFormat("' ' & Format$([Elevation],'0.0'),IIf(Len(Int([Elevation]))=2,' ' & Format$([Elevation],'#.00'),IIf(Len(Int([Elevation]))=1,'  ' & Format$([Elevation],'#.00'),");
-                    Export_Rquery.AppendFormat(" FROM ({0}) LinkR  ", LinkR_query);
-                    Export_Rquery.AppendFormat("LEFT JOIN LReceptoras ON (LinkR.IndexSTN = LReceptoras.IndexSTN) AND (LinkR.BaseLineNr = LReceptoras.BaseLineNr) AND (LinkR.BasePointNr = LReceptoras.BasePointNr)) ");
-                    Export_Rquery.AppendFormat("INNER JOIN [Preplot-R] ON (LinkR.BaseLineNr = [Preplot-R].BaseLineNr) AND (LinkR.BasePointNr = [Preplot-R].BasePointNr) ");
-                    Export_Rquery.AppendFormat("Group BY 'R', LinkR.BaseLineNr, LinkR.BasePointNr, LinkR.IndexSTN, ");
-                    Export_Rquery.AppendFormat("IIf(LReceptoras.Tipo is not null, LReceptoras.Tipo, [Preplot-R].Tipo),");
-                    Export_Rquery.AppendFormat(" LReceptoras.BaseLineNr, LReceptoras.BasePointNr, LReceptoras.IndexSTN, LReceptoras.Easting, LReceptoras.Northing, LReceptoras.Elevation, [Preplot-R].Easting, [Preplot-R].Northing ");
-                    Export_Rquery.AppendFormat("ORDER BY LinkR.BaseLineNr, LinkR.BasePointNr;");*/
-                    
-
                     Export_Rquery.AppendFormat("SELECT 'R' AS Inicial, LinkR.BaseLineNr, LinkR.BasePointNr, LinkR.IndexSTN AS RecLineIndex, IIf(LReceptoras.Tipo is not null, LReceptoras.Tipo, [Preplot-R].Tipo) As Detector,");
                     Export_Rquery.AppendFormat(" IIf([LReceptoras].[Easting] Is Not Null,Format$([LReceptoras].[Easting],'#.00'),Format$([Preplot-R].[Easting],'#.00')) AS Este, IIf([LReceptoras].[Northing] Is Not Null,");
                     Export_Rquery.AppendFormat("Format$([LReceptoras].[Northing],'#.00'),Format$([Preplot-R].[Northing],'#.00')) AS Norte, IIf(Int([Elevation])=0,'  ' & Format$([Elevation],'0.0'),IIf(Int([Elevation])=-1,");
@@ -248,10 +176,20 @@ namespace Exportacion
                     Export_Rquery.AppendFormat(" IIf(LReceptoras.Tipo is not null, LReceptoras.Tipo, [Preplot-R].Tipo), LReceptoras.BaseLineNr, LReceptoras.BasePointNr, LReceptoras.IndexSTN, LReceptoras.Easting, LReceptoras.Northing,");
                     Export_Rquery.AppendFormat(" LReceptoras.Elevation, [Preplot-R].Easting, [Preplot-R].Northing ");
                     Export_Rquery.AppendFormat("ORDER BY LinkR.BaseLineNr, LinkR.BasePointNr;");
-                    DataTable ExportSPS_R = conection.GetDataTable(Export_Rquery);
+                    DataTable ExportSPS_RDatatable = conection.GetDataTable(Export_Rquery);
 
 
+                    //EXPORTACION DE ARCHIVOS
+                    string rutaArchivoS = string.Format("{0}{1} ", txt_ruta.Text, ".S");
+                    string rutaArchivoR = string.Format("{0}{1} ", txt_ruta.Text, ".R");
+                    string rutaArchivoX = string.Format("{0}{1} ", txt_ruta.Text, ".X");
 
+                    ExportSPS_SDatatable.ToCSV(rutaArchivoS);
+                    MessageBox.Show("Archivos S creado con exito");
+                    ExportSPS_XDatatable.ToCSV(rutaArchivoX);
+                    MessageBox.Show("Archivos X creado con exito");
+                    ExportSPS_RDatatable.ToCSV(rutaArchivoR);
+                    MessageBox.Show("Archivos R creado con exito");
                }
           }
           public void Form_Exportacion_Load(object sender, EventArgs e)
@@ -276,7 +214,7 @@ namespace Exportacion
                          MessageBox.Show("Es necesario que introduzca una Fecha inicio y una Fecha final para la exportación del archivo");
 
                {
-                    txt_ruta.Text = string.Format("{0}\\SPS {1} a {2}", Carpeta.SelectedPath, dtp_FechaInicio.Text, dtp_FechaFinal.Text);
+                    txt_ruta.Text = string.Format("{0}\\SPS {1}", Carpeta.SelectedPath,"Archivo");
                }
           }
 
