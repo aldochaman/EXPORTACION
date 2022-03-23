@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32106.194
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exportacion", "Exportacion\Exportacion.csproj", "{AF887A1E-F582-4F85-B6FE-B897A3541E81}"
 EndProject
@@ -13,8 +13,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AF887A1E-F582-4F85-B6FE-B897A3541E81}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{AF887A1E-F582-4F85-B6FE-B897A3541E81}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{AF887A1E-F582-4F85-B6FE-B897A3541E81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF887A1E-F582-4F85-B6FE-B897A3541E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF887A1E-F582-4F85-B6FE-B897A3541E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF887A1E-F582-4F85-B6FE-B897A3541E81}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ABF360DA-1F97-4361-A522-72595A11BAD7}.Debug|Any CPU.ActiveCfg = Debug

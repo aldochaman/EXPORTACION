@@ -21,10 +21,13 @@ namespace Exportacion
      public partial class Form_Exportacion : Form
      {
           private Stopwatch _oTiempo;
-          private BackgroundWorker _oWorker;
+          private BackgroundWorker _oWorker; 
+
+
           public Form_Exportacion()
           {
                InitializeComponent();
+               CheckForIllegalCrossThreadCalls = false;
                _oTiempo = new Stopwatch();
           }
 
@@ -178,6 +181,7 @@ namespace Exportacion
 
           private void worker_DoWork(object sender, DoWorkEventArgs e)
           {
+
                DateTime FechaInicio = dtp_FechaInicio.Value;
                DateTime FechaFinal = dtp_FechaFinal.Value;
                string ruta = Path.GetFullPath("..\\..\\3D IXACHI.mdb");
