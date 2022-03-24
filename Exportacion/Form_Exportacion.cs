@@ -182,6 +182,7 @@ namespace Exportacion
           private void worker_DoWork(object sender, DoWorkEventArgs e)
           {
 
+
                DateTime FechaInicio = dtp_FechaInicio.Value;
                DateTime FechaFinal = dtp_FechaFinal.Value;
                string ruta = Path.GetFullPath("..\\..\\3D IXACHI.mdb");
@@ -190,7 +191,7 @@ namespace Exportacion
                StringBuilder Export_Xquery = new StringBuilder();
                StringBuilder STNsSPSX_query = new StringBuilder();
                StringBuilder LinkR_query = new StringBuilder();
-               StringBuilder Export_Rquery = new StringBuilder();               
+               StringBuilder Export_Rquery = new StringBuilder();
                using (HandlesConnection manager = new HandlesConnection(conection))
                {
                     lblProgreso.Text = "Start";
@@ -246,16 +247,17 @@ namespace Exportacion
 
                     }
                     _oWorker.ReportProgress(10);
-                    lblProgreso.Text = "GetDataTable";
+                    lblProgreso.Text = "Get Datatable S and X";
                     DataTable ExportSPS_SDatatable = conection.GetDataTable(Export_Squery);
                     DataTable ExportSPS_XDatatable = conection.GetDataTable(Export_Xquery);
-
+                    lblProgreso.Text = "Get DataTable S and X created";
                     //SQL que crea el datatable STNsSPSX
-
+                    lblProgreso.Text = "Get Line and Point from X....";
                     STNsSPSX_query.Append("SELECT RecepLine, PSTN, USTN, VersionIdx ");
                     STNsSPSX_query.AppendFormat(" FROM ({0}) ", Export_Xquery);
                     STNsSPSX_query.Append(" GROUP BY RecepLine, PSTN, USTN, VersionIdx");
                     DataTable STNsSPSX_Datatable = conection.GetDataTable(STNsSPSX_query);
+                    lblProgreso.Text = "Get Line and Point from X.... Finished";
 
                     //SQL que crea el datatable LinkR
 
@@ -270,6 +272,7 @@ namespace Exportacion
                     LinkR_query.Append(" FROM LReceptoras  WHERE LReceptoras.BaseLineNr Is Null");
                     conection.ExecuteCommand(LinkR_query);
                     _oWorker.ReportProgress(20);
+                    lblProgreso.Text = "Get Link_R.... Finished";
                     LinkR_query = new StringBuilder();
                     LinkR_query.Append("SELECT LReceptoras.BaseLineNr, LReceptoras.BasePointNr, LReceptoras.IndexSTN");
                     LinkR_query.Append(" FROM LReceptoras  WHERE LReceptoras.BaseLineNr Is Null)");
@@ -298,18 +301,22 @@ namespace Exportacion
                     Next
                     rstLinkR.Close
                     rstRelacional.Close*/
-                    lblProgreso.Text = "Fill DataTable";
-                    foreach (DataRow rst in STNsSPSX_Datatable.Rows)
+                    lblProgreso.Text = "Fill DataTable  LINKR";
+                    List<LinkR> linkr = new List<LinkR>();
+                    // foreach (DataRow rst in STNsSPSX_Datatable.Rows)
+                    System.Threading.Tasks.Parallel.ForEach(STNsSPSX_Datatable.AsEnumerable(), rst =>
                     {
                          for (int estacion = rst.GetValue<int>("PSTN"); estacion <= rst.GetValue<int>("USTN"); estacion++)
                          {
-                              StringBuilder query = new StringBuilder();
-                              query.AppendFormat("Insert into LinkR (BaseLineNr, BasePointNr, IndexSTN) ");
-                              query.AppendFormat("values ({0},{1},{2})", rst.GetValue<string>("RecepLine"), estacion, rst.GetValue<string>("VersionIdx"));
-                              conection.ExecuteCommand(query);
+                              //StringBuilder query = new StringBuilder();
+                              //query.AppendFormat("Insert into LinkR (BaseLineNr, BasePointNr, IndexSTN) ");
+                              //query.AppendFormat("values ({0},{1},{2})", rst.GetValue<string>("RecepLine"), estacion, rst.GetValue<string>("VersionIdx"));
+                              //conection.ExecuteCommand(query);
+                              linkr.Add(new LinkR() { BaseLineNr = rst.GetValue<string>("RecepLine"), BasePointNr = estacion, IndexSTN= rst.GetValue<string>("VersionIdx") });
                          }
-                    }
-
+                    });
+                    conection.InsertBulkCopy<LinkR>(linkr, "LinkR");
+                    lblProgreso.Text = "GET DataTable  R...";
                     _oWorker.ReportProgress(60);
                     //SQL que crea la TABLA ExportSPS_R en base a la Tabla Exportada ExportSPS_X
 
@@ -327,7 +334,7 @@ namespace Exportacion
                     Export_Rquery.AppendFormat("ORDER BY LinkR.BaseLineNr, LinkR.BasePointNr;");
                     DataTable ExportSPS_RDatatable = conection.GetDataTable(Export_Rquery);
                     _oWorker.ReportProgress(70);
-
+                    lblProgreso.Text = "GET DataTable  R... Finished  and start Exportation";
                     //EXPORTACION DE ARCHIVOS
                     string rutaArchivoS = string.Format("{0}{1} ", txt_ruta.Text, ".S");
                     string rutaArchivoR = string.Format("{0}{1} ", txt_ruta.Text, ".R");
@@ -344,7 +351,7 @@ namespace Exportacion
                     ExportSPS_RDatatable.ToCSV(rutaArchivoR);
                     lblProgreso.Text = "Archivos R creado con exito";
                     _oWorker.ReportProgress(100);
-                    //MessageBox.Show("Archivos R creado con exito");
+                    //MessageBox.Show("Archivos creados con exito");
                }
 
           }

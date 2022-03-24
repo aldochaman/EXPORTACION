@@ -166,6 +166,7 @@
     <Compile Include="DataBase\Utilities\ConfigurationData.cs" />
     <Compile Include="DataBase\Utilities\DataBaseExtensions.cs" />
     <Compile Include="DataBase\Utilities\ObjectsUtilities.cs" />
+    <Compile Include="DataBase\Utilities\OleDbTypeMap.cs" />
     <Compile Include="DataBase\Utilities\ParameterSql.cs" />
     <Compile Include="Form_Exportacion.cs">
       <SubType>Form</SubType>
@@ -173,6 +174,7 @@
     <Compile Include="Form_Exportacion.Designer.cs">
       <DependentUpon>Form_Exportacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="LinkR.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form_Exportacion.resx">

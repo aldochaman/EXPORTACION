@@ -1,4 +1,5 @@
 ﻿
+using Exportacion.DataBase.Utilities;
 using Framework.DataBase.Utilities;
 using Framework.Enumerations;
 
@@ -886,9 +887,46 @@ namespace Framework.DataBase
                     case DatabaseEngines.PostgressSql:
                     case DatabaseEngines.Oracle:
                     case DatabaseEngines.Odbc:
-                    case DatabaseEngines.OleDb:
                          InsertBuilkCopyByRows(pdtTablaOrigen, psTablaDestino);
                          break;
+                    case DatabaseEngines.OleDb:
+                         InsertBuilkCopyByRowsOledb(pdtTablaOrigen, psTablaDestino);
+                         break;
+               }
+          }
+          public static void InsertBuilkCopyByRowsOledb(DataTable pdtTablaOrigen, string psTablaDestino)
+          {
+               StringBuilder query = new StringBuilder();
+               StringBuilder columns = new StringBuilder();
+               StringBuilder rows = new StringBuilder();               
+               OleDbConnection connection;
+               query.AppendFormat("Insert into {0}", psTablaDestino);
+               foreach (DataColumn column in pdtTablaOrigen.Columns)
+               {
+                    columns.AppendFormat("{0},", column.ColumnName);
+                    rows.AppendFormat("@{0},", column.ColumnName);
+               }
+               query.AppendFormat(" ({0}) values({1}) ", columns.Remove(columns.Length - 1, 1), rows.Remove(rows.Length - 1, 1));
+               StringBuilder querySelect = new StringBuilder();
+               querySelect.AppendFormat ( "SELECT * FROM {0} WHERE ReadingID=0", psTablaDestino);              
+               if (_CurrentSqlTransaction == null)
+                    connection = (OleDbConnection)_CurrentSqlConnection;
+               else
+                    connection = ((OleDbTransaction)_CurrentSqlTransaction).Connection;               
+               using (OleDbDataAdapter OleAdp = new OleDbDataAdapter(querySelect.ToString (), connection))
+               {
+                    using (OleAdp.InsertCommand = new OleDbCommand(query.ToString ()))
+                    {
+                         foreach (DataColumn column in pdtTablaOrigen.Columns)
+                         {                              
+                              OleAdp.InsertCommand.Parameters.Add($"@{column.ColumnName}", OleDbTypeMap.GetType(column.DataType) , column.MaxLength, column.ColumnName);
+                         }                         
+                         OleAdp.InsertCommand.Connection = connection;
+                         if (OleAdp.InsertCommand.Connection.State != ConnectionState.Open)                         
+                              OleAdp.InsertCommand.Connection.Open();
+                         OleAdp.Update(pdtTablaOrigen);
+                         
+                    }
                }
           }
           private static void InsertBuilkCopyByRows(DataTable pdtTablaOrigen, string psTablaDestino)
