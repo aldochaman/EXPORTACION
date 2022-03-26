@@ -47,6 +47,7 @@ C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Release\System.Text.Json
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Release\System.Threading.Channels.xml
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Release\System.ValueTuple.xml
+C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Release\Exportacion.csproj.AssemblyReference.cache
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Release\Exportacion.Form_Exportacion.resources
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Release\Exportacion.Properties.Resources.resources
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Release\Exportacion.csproj.GenerateResource.cache

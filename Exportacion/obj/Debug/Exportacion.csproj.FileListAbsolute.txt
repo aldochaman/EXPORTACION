@@ -1,8 +1,3 @@
-C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.csproj.AssemblyReference.cache
-C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.Form_Exportacion.resources
-C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.Properties.Resources.resources
-C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.csproj.GenerateResource.cache
-C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.csproj.CoreCompileInputs.cache
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Exportacion.exe.config
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Exportacion.exe
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Exportacion.pdb
@@ -17,6 +12,7 @@ C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Microsoft.Bcl.Hash
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\MySql.Data.dll
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Npgsql.dll
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\Packing.dll
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\System.Buffers.dll
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\System.Collections.Immutable.dll
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\System.Diagnostics.DiagnosticSource.dll
@@ -51,6 +47,10 @@ C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\System.Text.Json.x
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\System.Threading.Channels.xml
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\bin\Debug\System.ValueTuple.xml
+C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.Form_Exportacion.resources
+C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.Properties.Resources.resources
+C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.csproj.GenerateResource.cache
+C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.csproj.CoreCompileInputs.cache
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.csproj.CopyComplete
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.exe
 C:\Users\aldo0\source\repos\Exportacion\Exportacion\obj\Debug\Exportacion.pdb

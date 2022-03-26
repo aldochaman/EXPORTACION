@@ -30,7 +30,7 @@ namespace Exportacion
                          if (!Convert.IsDBNull(dr[i]))
                          {
                               string value = dr[i].ToString();
-                              if (value.Contains(','))
+                              if (value.Contains(","))
                               {
                                    value = String.Format("\"{0}\"", value);
                                    sw.Write(value);
